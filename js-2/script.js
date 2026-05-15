@@ -66,7 +66,7 @@ console.log("Ova e sekoj vtor neparenbroj od 1 do 100:")
 for (let i = 1; i <= 100; i += 2) {
     count++;
     if (count % 2 == 0) {
-        console.log(i);
+        console.log(i);1177
     }
 }
 console.log("--------------------------------------")

@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  padding: 20px;
+}
+#next-btn {
+  float: right;
+  margin: 0 auto 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #30a07e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+#next-btn:hover {
+  transform: scale(0.95);
+}
+#show-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fcfcfc;
+}
+#show {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+#show img {
+  border-radius: 10px;
+}
+
+#episodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 70px;
+}
+#episodes div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 400px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+}
+#episodes img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#episodes p {
+  max-height: 150px;
+  overflow: auto;
+  font-size: 14px;
+  margin: 0;
+  color: #555;
+}
+#episodes h3 {
+  margin: 10px 0;
+  text-align: center;
+}
+#episodes h5 {
+  margin: 5px 0;
+  color: #12724d;
+}

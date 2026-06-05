@@ -4,9 +4,6 @@ console.log(id);
 async function getShowData(id) {
     const response = await fetch(`https://api.tvmaze.com/shows/${id}`)
     const show = await response.json()
-
-    console.log(show);
-
     return show
 }
 async function getEpisodes(id) {
@@ -18,9 +15,7 @@ async function getEpisodes(id) {
 getShowData(id).then(show => {
     const showContainer = document.getElementById("show")
     const showTitle = document.getElementById("show-title")
-
     showTitle.innerText = show.name
-
     showContainer.innerHTML = `<img src="${show.image.medium}"/>`
 })
 

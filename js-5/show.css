@@ -41,11 +41,18 @@ body {
 }
 #show {
   display: flex;
-  justify-content: center;
+  justify-content:space-between;
   margin-bottom: 20px;
 }
 #show img {
   border-radius: 10px;
+} 
+#show p {
+  max-width: 600px;
+  margin: 20px auto;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #aca6a6;
 }
 
 #episodes {

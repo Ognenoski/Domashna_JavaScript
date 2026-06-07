@@ -17,6 +17,7 @@ getShowData(id).then(show => {
     const showTitle = document.getElementById("show-title")
     showTitle.innerText = show.name
     showContainer.innerHTML = `<img src="${show.image.medium}"/>`
+    showContainer.innerHTML += `<p>${show.summary}</p>`
 })
 
 getEpisodes(id).then(episodes => {

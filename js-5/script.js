@@ -34,5 +34,11 @@ function populateShows(shows) {
             </div>`
     })
 }
+const logoutButton = document.getElementById("logout-btn")
+logoutButton.addEventListener("click",
+    () =>{
+        localStorage.removeItem("loggedInUser")
+        window.location.href = "login.html"
+    })
 
 getShows().then(shows => populateShows(shows))

@@ -4,6 +4,8 @@ body {
   padding: 20px;
 }
 body h1 {
+  display: flex;
+  justify-content: center;
   text-align: center;
   font-size: 50px;
   color: #30a07e;

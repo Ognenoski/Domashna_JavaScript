@@ -1,11 +1,15 @@
 
-if (!localStorage.getItem("username")) {
-    const username =[{
+if (!localStorage.getItem("users")) {
+    const users =[{
         username: "Daniel",
         password: "1234"
+    },
+    {
+        username: "Mila",
+        password: "123",
     }]
 
-    localStorage.setItem("username", JSON.stringify(username))
+    localStorage.setItem("users", JSON.stringify(users))
 }
 
  function login() 
@@ -13,7 +17,7 @@ if (!localStorage.getItem("username")) {
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
 
-    const users = JSON.parse(localStorage.getItem("username")) || []
+    const users = JSON.parse(localStorage.getItem("users")) || []
 
     const user = users.find(user =>
          user.username === username && 

@@ -7,7 +7,54 @@ async function getShows() {
     return shows
 }
 
+let allShows = []
+let favorites = JSON.parse(localStorage.getItem("favorites")) || []
+let onFavorites = false
+
+function showAll() {
+    onFavorites = false
+    populateShows(allShows)
+}
+
+function showFavorites() {
+    onFavorites = true
+    const favoriteShows = allShows.filter(show => favorites.includes(show.id))
+    populateShows(favoriteShows)
+
+}
+function toggleFavorite(showId) {
+    if (favorites.includes(showId)) {
+        favorites = favorites.filter(id => id !== showId)
+    } else {
+        favorites.push(showId)
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites))
+    if (onFavorites) {
+        showFavorites()
+    } else {
+        populateShows(allShows)
+    }
+}
+
+function searchShows() {
+    const searchInputValue = document.getElementById("search-input").value.toLowerCase().trim()
+
+    let filteredShows = allShows
+
+    if (onFavorites) {
+        filteredShows = filteredShows.filter(show => favorites.includes(show.id))
+    }
+
+    filteredShows = filteredShows.filter(show =>
+        show.name.toLowerCase().includes(searchInputValue)
+    )
+
+    populateShows(filteredShows)
+}
+
 function populateShows(shows) {
+    showsContainer.innerHTML = ""
     shows.forEach(show => {
 
         let rating = ""
@@ -15,8 +62,13 @@ function populateShows(shows) {
             rating += `<i class="fa fa-star"></i>`
         }
         showsContainer.innerHTML +=
-         `<div class="show">
+            `<div class="show">
                 <img src="${show.image.medium}" />
+                <button onclick="toggleFavorite(${show.id})">
+    ${favorites.includes(show.id) ? "⭐ Remove Favorite" : "☆ Add to Favorite"}
+</button>
+</button>
+
             <div class="show-inner">
                  <div class="show-content">
                           <div class="rating">
@@ -39,4 +91,7 @@ logoutButton.addEventListener("click",
         window.location.href = "index.html"
     })
 
-getShows().then(shows => populateShows(shows))
+getShows().then(shows => {
+    allShows = shows
+    populateShows(allShows)
+})

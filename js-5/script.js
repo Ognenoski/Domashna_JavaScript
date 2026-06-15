@@ -1,44 +1,35 @@
-const showsContainer = document.getElementById("shows-container")
 
-async function getShows() {
-    const response = await fetch("https://api.tvmaze.com/shows")
-    const shows = await response.json()
+if (!localStorage.getItem("users")) {
+    const users =[{
+        username: "Daniel",
+        password: "1234"
+    },
+    {
+        username: "Mila",
+        password: "123",
+    }]
 
-    console.log(shows);
-
-    return shows
+    localStorage.setItem("users", JSON.stringify(users))
 }
 
-function populateShows(shows) {
-    shows.forEach(show => {
+ function login() 
+{
+    const username = document.getElementById("username").value
+    const password = document.getElementById("password").value
 
-        let rating = ""
-        for (let i = 0; i < show.rating.average; i++) {
-            rating += `<i class="fa fa-star"></i>`
-        }
-        showsContainer.innerHTML +=
-            `<div class="show">
-                <img src="${show.image.medium}" />
-                <div class="show-inner">
-                 <div class="show-content">
-                    <div class="rating">
-                       ${rating}
-                    </div>
-                    <h2 >${show.name}</h2>
-                </div>
-                <div class="show-footer">
-                    ${show.officialSite ? `<a href="${show.officialSite}">Official Site</a>` : ''}
-                    <a href="show.html?id=${show.id}">Learn More</a>
-                </div>
-                </div>
-            </div>`
-    })
+    const users = JSON.parse(localStorage.getItem("users")) || []
+
+    const user = users.find(user =>
+         user.username === username && 
+         user.password === password)
+
+if (user) {
+    localStorage.setItem("loggedInUser", JSON.stringify(user))
+    window.location.href = "home.html"
+    return
+
 }
-const logoutButton = document.getElementById("logout-btn")
-logoutButton.addEventListener("click",
-    () =>{
-        localStorage.removeItem("loggedInUser")
-        window.location.href = "login.html"
-    })
-
-getShows().then(shows => populateShows(shows))
+else {
+    alert("Pogresen korisnik ili lozinka")
+}
+}
